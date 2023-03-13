@@ -32,6 +32,7 @@ function playerUpdate(dt)
         end
 
         if player:enter('Danger') then
+            sounds.hurt:play()
             player:setPosition(playerStartX, playerStartY)
         end
     end

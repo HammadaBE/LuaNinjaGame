@@ -10,9 +10,11 @@ function love.load()
     sounds = {}
     sounds.jump = love.audio.newSource("audio/jump.wav", "static")
     sounds.shoot = love.audio.newSource("audio/shoot.wav", "static")
-    sounds.music = love.audio.newSource("audio/music.mp3", "stream")
+    sounds.nextLevel = love.audio.newSource("audio/nextLevel.wav", "static")
+    sounds.hurt = love.audio.newSource("audio/hurt.wav", "static")
+    sounds.music = love.audio.newSource("audio/backSound.mp3", "stream")
     sounds.music:setLooping(true)
-    sounds.music:setVolume(0.5)
+    sounds.music:setVolume(1)
 
     sounds.music:play()
 
@@ -82,6 +84,7 @@ function love.update(dt)
 
     local colliders = world:queryCircleArea(flagX, flagY, 10, {'Player'})
     if #colliders > 0 then
+        sounds.nextLevel:play()
         if saveData.currentLevel == "level1" then
             loadMap("level2")
         elseif saveData.currentLevel == "level2" then
