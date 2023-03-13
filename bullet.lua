@@ -8,8 +8,8 @@ bullets = {}
 function spawnBullet()
     local bullet = {}
     local px, py = player:getPosition()
-    bullet.x =px 
-    bullet.y = py
+    bullet.x =px  
+    bullet.y = py+15
     bullet.speed = 500
     bullet.dead = false
     bullet.direction = player.direction
@@ -21,8 +21,7 @@ end
 
 function updateBullet(dt)
     for i,b in ipairs(bullets) do
-        b.x = b.x + (b.direction  * b.speed * dt)
-       
+       b.x = b.x + (b.direction  * b.speed * dt)
     end
 
     for i=#bullets, 1, -1 do

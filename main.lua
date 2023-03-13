@@ -9,6 +9,7 @@ function love.load()
 
     sounds = {}
     sounds.jump = love.audio.newSource("audio/jump.wav", "static")
+    sounds.shoot = love.audio.newSource("audio/shoot.wav", "static")
     sounds.music = love.audio.newSource("audio/music.mp3", "stream")
     sounds.music:setLooping(true)
     sounds.music:setVolume(0.5)
@@ -114,6 +115,7 @@ function love.keypressed(key)
 
     if key == 's' then
         spawnBullet(player)
+        sounds.shoot:play()
     end
 end
    
