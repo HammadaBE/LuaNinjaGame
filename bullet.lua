@@ -1,18 +1,21 @@
 
 require('player')
-require('enemy')
+--require('bullet')
 
 
 bullets = {}
 
 function spawnBullet()
-    local bullet = {}
     local px, py = player:getPosition()
-    bullet.x =px  
+    local bullet = {}
+    bullet.x = 500  
     bullet.y = py+15
     bullet.speed = 500
     bullet.dead = false
     bullet.direction = player.direction
+    local collider = world:newCircleCollider(500, py,5, {collision_class = 'Bullet'})
+    collider:setLinearVelocity(bullet.speed * bullet.direction, 0)
+    bullet.collider = collider
     table.insert(bullets, bullet)
 end
 
@@ -22,6 +25,7 @@ end
 function updateBullet(dt)
     for i,b in ipairs(bullets) do
        b.x = b.x + (b.direction  * b.speed * dt)
+       
     end
 
     for i=#bullets, 1, -1 do

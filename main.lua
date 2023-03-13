@@ -39,6 +39,7 @@ function love.load()
     world:addCollisionClass('Platform')
     world:addCollisionClass('Player'--[[, {ignores = {'Platform'}}]])
     world:addCollisionClass('Danger')
+    world:addCollisionClass('Bullet')
 
     require('player')
     require('enemy')
@@ -77,9 +78,7 @@ function love.update(dt)
     local px, py = player:getPosition()
     cam:lookAt(px, love.graphics.getHeight()/2)
 
-    -- if #bullets > 0 and #enemies > 0 then
-    --     checkCollision(bullets.bullet,enemies.enemy)
-    -- end
+   
 
     local colliders = world:queryCircleArea(flagX, flagY, 10, {'Player'})
     if #colliders > 0 then
@@ -114,7 +113,7 @@ function love.keypressed(key)
     end
 
     if key == 's' then
-        spawnBullet(player)
+        spawnBullet()
         sounds.shoot:play()
     end
 end
@@ -122,7 +121,7 @@ end
 
 function love.mousepressed(x, y, button)
     if button == 1 then
-        local colliders = world:queryCircleArea(x, y, 200, {'Platform', 'Danger'})
+        local colliders = world:queryCircleArea(x, y, 200, {'Platform', 'Danger',})
         for i,c in ipairs(colliders) do
             c:destroy()
         end
@@ -135,18 +134,7 @@ function spawnPlatform(x, y, width, height)
     table.insert(platforms, platform)
 end
 
-function checkCollision(bullet,enemy)
-    -- Check if the two objects overlap
-    if bullet.x < enemy.x + enemy.width and
-       bullet.x + bullet.width > enemy.x and
-       bullet.y < enemy.y + enemy.height and
-       bullet.y + bullet.height > enemy.y then
-         
-         -- Remove the bullet and enemy from the game
-         table.remove(bullets, i)
-         table.remove(enemies, j)
-    end
-  end
+
   
 
 function destroyAll()
