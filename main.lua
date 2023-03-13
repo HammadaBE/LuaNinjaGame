@@ -18,7 +18,9 @@ function love.load()
     sprites = {}
     sprites.playerSheet = love.graphics.newImage('sprites/ninjaPlayer.png')
     sprites.enemySheet = love.graphics.newImage('sprites/enemyRed.png')
+    sprites.bullet = love.graphics.newImage('sprites/bullet.png')
     sprites.background = love.graphics.newImage('sprites/spaceBackground.jpg')
+    
 
     local grid = anim8.newGrid(182, 242, sprites.playerSheet:getWidth(), sprites.playerSheet:getHeight())
     local enemyGrid = anim8.newGrid(203, 173, sprites.enemySheet:getWidth(), sprites.enemySheet:getHeight())
@@ -39,7 +41,9 @@ function love.load()
 
     require('player')
     require('enemy')
+    require('bullet')
     require('libraries/show')
+    
 
     dangerZone = world:newRectangleCollider(-500, 800, 5000, 50, {collision_class = "Danger"})
     dangerZone:setType('static')
@@ -65,9 +69,16 @@ function love.update(dt)
     gameMap:update(dt)
     playerUpdate(dt)
     updateEnemies(dt)
+    updateBullet(dt)
+
+   
 
     local px, py = player:getPosition()
     cam:lookAt(px, love.graphics.getHeight()/2)
+
+    -- if #bullets > 0 and #enemies > 0 then
+    --     checkCollision(bullets.bullet,enemies.enemy)
+    -- end
 
     local colliders = world:queryCircleArea(flagX, flagY, 10, {'Player'})
     if #colliders > 0 then
@@ -81,10 +92,12 @@ end
 
 function love.draw()
     love.graphics.draw(sprites.background, 0, 0)
+    drawBullet()
     cam:attach()
         gameMap:drawLayer(gameMap.layers["Tile Layer 1"])
         drawPlayer()
         drawEnemies()
+        
     cam:detach()
 end
 
@@ -98,7 +111,12 @@ function love.keypressed(key)
     if key == 'r' then
         loadMap("level2")
     end
+
+    if key == 's' then
+        spawnBullet(player)
+    end
 end
+   
 
 function love.mousepressed(x, y, button)
     if button == 1 then
@@ -114,6 +132,20 @@ function spawnPlatform(x, y, width, height)
     platform:setType('static')
     table.insert(platforms, platform)
 end
+
+function checkCollision(bullet,enemy)
+    -- Check if the two objects overlap
+    if bullet.x < enemy.x + enemy.width and
+       bullet.x + bullet.width > enemy.x and
+       bullet.y < enemy.y + enemy.height and
+       bullet.y + bullet.height > enemy.y then
+         
+         -- Remove the bullet and enemy from the game
+         table.remove(bullets, i)
+         table.remove(enemies, j)
+    end
+  end
+  
 
 function destroyAll()
     local i = #platforms
