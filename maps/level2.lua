@@ -1,46 +1,22 @@
 return {
-  version = "1.4",
+  version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.4.2",
+  tiledversion = "1.10.0",
+  class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
-  width = 40,
+  width = 70,
   height = 12,
   tilewidth = 64,
   tileheight = 64,
   nextlayerid = 6,
-  nextobjectid = 16,
+  nextobjectid = 22,
   properties = {},
   tilesets = {
     {
-      name = "platformer",
-      firstgid = 1,
-      tilewidth = 64,
-      tileheight = 64,
-      spacing = 0,
-      margin = 0,
-      columns = 3,
-      image = "tileset.png",
-      imagewidth = 192,
-      imageheight = 192,
-      objectalignment = "unspecified",
-      tileoffset = {
-        x = 0,
-        y = 0
-      },
-      grid = {
-        orientation = "orthogonal",
-        width = 64,
-        height = 64
-      },
-      properties = {},
-      terrains = {},
-      tilecount = 9,
-      tiles = {}
-    },
-    {
       name = "Flag",
-      firstgid = 10,
+      firstgid = 1,
+      class = "",
       tilewidth = 64,
       tileheight = 64,
       spacing = 0,
@@ -50,6 +26,8 @@ return {
       imagewidth = 64,
       imageheight = 64,
       objectalignment = "unspecified",
+      tilerendersize = "tile",
+      fillmode = "stretch",
       tileoffset = {
         x = 0,
         y = 0
@@ -60,8 +38,37 @@ return {
         height = 64
       },
       properties = {},
-      terrains = {},
+      wangsets = {},
       tilecount = 1,
+      tiles = {}
+    },
+    {
+      name = "platform2",
+      firstgid = 2,
+      class = "",
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 4,
+      image = "png/Tiles/Tile (3).png",
+      imagewidth = 256,
+      imageheight = 256,
+      objectalignment = "unspecified",
+      tilerendersize = "tile",
+      fillmode = "stretch",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 16,
       tiles = {}
     }
   },
@@ -70,29 +77,32 @@ return {
       type = "tilelayer",
       x = 0,
       y = 0,
-      width = 40,
+      width = 70,
       height = 12,
       id = 1,
       name = "Tile Layer 1",
+      class = "",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
       properties = {},
       encoding = "lua",
       data = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3,
-        0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 4, 5, 5, 5, 5, 6,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4, 4, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 4, 5,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 4, 4, 5, 0, 0, 0, 6, 6, 7, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 8, 7, 8, 7, 8, 9,
+        0, 0, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 5, 0, 0, 6, 7, 8, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 4, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 6, 7, 7, 7, 7, 7, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 5, 0, 0, 0, 0, 0, 0, 0, 6, 11, 12, 11, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 7, 7, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 6, 7, 7, 7, 7, 7, 8, 8, 8, 9, 0, 0, 0, 2, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 8, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 11, 11, 11, 12, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 6, 7, 7, 7, 7, 7, 8, 8, 8, 9, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 11, 12, 11, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 7, 7, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 6, 7, 7, 7, 7, 7, 8, 8, 8, 9, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 8, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 11, 11, 11, 12, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 6, 7, 7, 7, 7, 7, 8, 8, 8, 9, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 11, 12, 11, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 15, 15, 15, 15, 15, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
     },
     {
@@ -100,10 +110,13 @@ return {
       draworder = "topdown",
       id = 4,
       name = "Flag",
+      class = "",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
       properties = {},
       objects = {
         {
@@ -111,8 +124,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 2368,
-          y = 256,
+          x = 4353,
+          y = 190,
           width = 64,
           height = 64,
           rotation = 0,
@@ -126,10 +139,13 @@ return {
       draworder = "topdown",
       id = 5,
       name = "Start",
+      class = "",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
       properties = {},
       objects = {
         {
@@ -152,10 +168,13 @@ return {
       draworder = "topdown",
       id = 2,
       name = "Platforms",
+      class = "",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
       properties = {},
       objects = {
         {
@@ -222,6 +241,45 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 17,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 2753,
+          y = 254,
+          width = 445,
+          height = 128,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 18,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 3394,
+          y = 385,
+          width = 444,
+          height = 382,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 19,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 3968,
+          y = 255,
+          width = 510,
+          height = 129,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -230,10 +288,13 @@ return {
       draworder = "topdown",
       id = 3,
       name = "Enemies",
+      class = "",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
       properties = {},
       objects = {
         {
@@ -245,6 +306,32 @@ return {
           y = 448,
           width = 64,
           height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 20,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 2369,
+          y = 255,
+          width = 63,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 21,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 3521,
+          y = 319,
+          width = 64,
+          height = 67,
           rotation = 0,
           visible = true,
           properties = {}
