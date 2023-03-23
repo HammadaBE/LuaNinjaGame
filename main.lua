@@ -58,7 +58,7 @@ function love.load()
     flagY = 0
 
     saveData = {}
-    saveData.currentLevel = "level1"
+    saveData.currentLevel = "level0"
 
     if love.filesystem.getInfo("data.lua") then
         local data = love.filesystem.load("data.lua")
@@ -85,20 +85,23 @@ function love.update(dt)
     local colliders = world:queryCircleArea(flagX, flagY, 10, {'Player'})
     if #colliders > 0 then
         sounds.nextLevel:play()
-        if saveData.currentLevel == "level1" then
-            loadMap("level2")
-        elseif saveData.currentLevel == "level2" then
+        if saveData.currentLevel == "level0" then
             loadMap("level1")
+        elseif saveData.currentLevel == "level1" then
+            loadMap("level2")    
+        elseif saveData.currentLevel == "level2" then
+            loadMap("level0")
         end
     end
 end
 
 function love.draw()
     love.graphics.draw(sprites.background, 0, 0)
-    drawBullet()
+    
     cam:attach()
         gameMap:drawLayer(gameMap.layers["Tile Layer 1"])
         drawPlayer()
+        drawBullet()
         drawEnemies()
         
     cam:detach()
@@ -112,7 +115,7 @@ function love.keypressed(key)
         end
     end
     if key == 'r' then
-        loadMap("level2")
+        loadMap("level0")
     end
 
     if key == 's' then
@@ -177,12 +180,16 @@ function loadMap(mapName)
         spawnPlatform(obj.x, obj.y, obj.width, obj.height)
     end
     
-    for i, obj in pairs(gameMap.layers["Enemies"].objects) do
-        spawnEnemy(obj.x, obj.y)
-    end
-    
+
     for i, obj in pairs(gameMap.layers["Flag"].objects) do
         flagX = obj.x
         flagY = obj.y
+    end
+
+    if  mapName~="level0" then
+        -- love.graphics.rectangle( "fill", 20,50, 60,120)
+        for i, obj in pairs(gameMap.layers["Enemies"].objects) do
+            spawnEnemy(obj.x, obj.y)
+        end
     end
 end

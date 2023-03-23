@@ -1,4 +1,4 @@
-require('bullet')
+-- require('bullet')
 
 enemies = {}
 
@@ -28,8 +28,12 @@ function updateEnemies(dt)
                     e:destroy()
                     table.remove(enemies, i)
                 end
+
+                
             end    
         end
+
+        
         
 end
 
