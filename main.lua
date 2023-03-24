@@ -105,6 +105,19 @@ function love.draw()
         drawEnemies()
         
     cam:detach()
+
+    if saveData.currentLevel == "level0" then
+        love.graphics.rectangle("fill", 100,400, 800,200, 50,50)
+        --local coloredtext = love.graphics.newText( "Hello, World!")
+        local text = {
+            
+            {0, 0, 255, 255}, "Welcome to the Ninja game!\nYou have to reach the flag to go to the next level. \nAvoid the enemies or defeat them.\n" ,
+            {134,0 , 130, 196}, "Use the arrow keys to move and jump. \nPress 's' to shoot. Press 'r' to restart the game.\n",
+            {255, 0, 0, 255}, "Good luck!"
+        }
+        love.graphics.print(text, 130, 420, 0, 2, 2, 0, 0, 0, 0)
+    end
+    
 end
 
 function love.keypressed(key)
@@ -187,7 +200,7 @@ function loadMap(mapName)
     end
 
     if  mapName~="level0" then
-        -- love.graphics.rectangle( "fill", 20,50, 60,120)
+        
         for i, obj in pairs(gameMap.layers["Enemies"].objects) do
             spawnEnemy(obj.x, obj.y)
         end
